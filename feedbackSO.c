@@ -103,6 +103,6 @@ printArr(&miArray);
 printf (" El numero de elementos del array es : %d\n",getArrSize(&miArray));
 printf("\n");
 //retorno el valor de la posicion del array pasada a la funcion
-int num=0;
+int num=1;
 printf("La posicion %d tiene el valor : %d \n" , num,getElement(&miArray,num));
 }
