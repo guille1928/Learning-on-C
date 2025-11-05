@@ -111,7 +111,11 @@ if (n>=0 && n<pArray->arrSize && pArray->arrInt[n]>=0 && valor>0){
 return 0;
 }
 
-
+//Apartado 5
+//----------------------------------------------------------
+int resetArr (arrayLength_t *pArray){  
+    return initArray(pArray);
+}
 
 int main (){
 arrayLength_t miArray;
@@ -149,5 +153,11 @@ if(setElement(&miArray,num2,88) ==0){
 //se imprime de nuevo el array para comprobar el resultado 
 printArr(&miArray);
 
+printf("\n Apartado 5 \n");
+if (resetArr(&miArray)==0){
+    printf("Se reseteo el array exitosamente \n");
+}else {printf("Hubo un error en la actualizacion");}
+
+printArr(&miArray);
 
 }
