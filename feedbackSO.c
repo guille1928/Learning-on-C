@@ -68,6 +68,15 @@ if (pArray== NULL){
 return pArray->arrSize; 
 }
 
+int getArrAdd (arrayLength_t *pArray){
+if (pArray == NULL){
+    return -1;
+}
+//devuelvo la suma de los valores dentro del array 
+return pArray->arrAdd;
+
+}
+
 int getElement (arrayLength_t *pArray, int n){
 if (pArray== NULL){
     return -1;
@@ -78,8 +87,30 @@ return pArray->arrInt[n];
 }else {return -1; }
 
 }
+
+
 //Apartado 4
 //----------------------------------------------------------
+int setElement (arrayLength_t *pArray, int n, int valor){
+if(pArray == NULL){
+    return -1;
+}
+if (n>=0 && n<pArray->arrSize && pArray->arrInt[n]>=0 && valor>0){
+    //la damos el nuevo valor
+    pArray->arrInt[n]= valor;
+    pArray->arrAdd=0;
+    //actualizamos el valor de arrAdd
+    for (int i =0; i<pArray->arrSize; i++){
+        //si tiene valor mayor a cero realizo la suma 
+        if(pArray->arrInt[i]>0){
+             pArray->arrAdd += pArray->arrInt[i];
+        }
+       
+    }
+}
+return 0;
+}
+
 
 
 int main (){
@@ -99,10 +130,24 @@ if(addElement(&miArray,44)==0){
     printf("Valor metido correctamente \n");
 printArr(&miArray);
 }else {printf("Hubo un error al añadir el valor");}
+
+printf("\n Apartado 3 \n");
+//retorno la suma de los valores del array
+printf("La suma de los valores del array es : %d",miArray.arrAdd);
 //retorno el size nuevo del array
-printf (" El numero de elementos del array es : %d\n",getArrSize(&miArray));
+printf ("\nEl numero de elementos del array es : %d\n",getArrSize(&miArray));
 printf("\n");
 //retorno el valor de la posicion del array pasada a la funcion
 int num=1;
 printf("La posicion %d tiene el valor : %d \n" , num,getElement(&miArray,num));
+
+printf("\n Apartado 4 \n");
+int num2=1;
+if(setElement(&miArray,num2,88) ==0){
+    printf("Se actualizo correctamente la posicion del array %d  con el valor 88 \n",num2);
+}else {printf("Hubo un error en la actualización \n");}
+//se imprime de nuevo el array para comprobar el resultado 
+printArr(&miArray);
+
+
 }
