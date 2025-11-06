@@ -117,6 +117,22 @@ int resetArr (arrayLength_t *pArray){
     return initArray(pArray);
 }
 
+
+//Apartado 6
+//----------------------------------------------------------
+//6.1
+arrayLength_t al1, al2;
+//realizo alguna funcion extra para los ejercicios del apartado 6
+
+int fillArray (arrayLength_t *pArray){
+    for(int i=0;i<pArray->arrSize;i++){
+        pArray->arrInt[i]= i*10;
+    }
+
+
+return 0;
+}
+
 int main (){
 arrayLength_t miArray;
 
@@ -159,5 +175,16 @@ if (resetArr(&miArray)==0){
 }else {printf("Hubo un error en la actualizacion");}
 
 printArr(&miArray);
+
+printf("\n Apartado 6 \n");
+//llenamos el array 
+if(initArray(&al1)==0){
+    printf("Se inicio el array 'al1' exitosamente \n");
+    if(addElement(&al1,1)==0){
+        printf("Se relleno correctamente el array \n");
+        printArr(&al1);
+    }
+}else{printf("Hubo un error al iniciar el array 'al1'\n");}
+
 
 }
