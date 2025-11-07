@@ -124,6 +124,7 @@ int resetArr (arrayLength_t *pArray){
 arrayLength_t al1, al2;
 //realizo alguna funcion extra para los ejercicios del apartado 6
 
+//relleno el array con numeracion especifica
 int fillArray (arrayLength_t *pArray){
     if (pArray == NULL) return -1;
     for(int i=0;i<10;i++){
@@ -131,7 +132,7 @@ int fillArray (arrayLength_t *pArray){
     }
 return 0;
 }
-
+//rellenamos el array solo en la posicion impar
 int fillArrayImpar (arrayLength_t *pArray){
     if (pArray == NULL) return -1;
     pArray->arrAdd=0;
@@ -142,6 +143,31 @@ int fillArrayImpar (arrayLength_t *pArray){
         }
         pArray->arrAdd+=pArray->arrInt[i];
     }
+    return 0;
+}
+
+int fillArrayPar (arrayLength_t *pArray, arrayLength_t *pArrayFill ){
+    pArrayFill->arrSize=0;
+    pArrayFill->arrAdd=0;
+    //creo un indice diferente para el 'al2'
+    int j=0;
+    int k=0;
+    //copiar valores de posiciones pares al al2
+    for (int i=0; i<10 ;i++){
+        if (i%2==0){
+            pArrayFill->arrInt[j]= pArray->arrInt[i];
+            pArrayFill->arrAdd+=pArrayFill->arrInt[j];
+            j++;  
+        }
+    }
+    //rellenar las posiciones restantes con valores 0 al 4
+    for (int i =5 ;i<10;i++){
+        pArrayFill->arrInt[i]=k;
+        k++;
+        pArrayFill->arrAdd+=pArrayFill->arrInt[i];
+    }
+
+    pArrayFill->arrSize=j+k;
     return 0;
 }
 
@@ -196,11 +222,18 @@ if(initArray(&al1)==0 && fillArray(&al1)==0){
     printArr(&al1);
 }
 
-//apartados 6.4
+//apartados 6.4 y 6.5
 if(fillArrayImpar(&al1)==0){
     printf("Se relleno el array de posiciones impares \n");
     printArr(&al1);
 
 }
+//apartado 6.6, 6.7 y 6.8
+if(initArray(&al2)==0&&fillArrayPar(&al1,&al2)==0 ){
+    printf("Se rellenó el array 'al2' con la numeracion par de 'al1' \n");
+    
+}
+printArr(&al2);
+
 
 }
