@@ -125,11 +125,9 @@ arrayLength_t al1, al2;
 //realizo alguna funcion extra para los ejercicios del apartado 6
 
 int fillArray (arrayLength_t *pArray){
-    for(int i=0;i<pArray->arrSize;i++){
-        pArray->arrInt[i]= i*10;
+    for(int i=0;i<10;i++){
+        addElement(pArray,i*10);
     }
-
-
 return 0;
 }
 
@@ -178,13 +176,9 @@ printArr(&miArray);
 
 printf("\n Apartado 6 \n");
 //llenamos el array 
-if(initArray(&al1)==0){
-    printf("Se inicio el array 'al1' exitosamente \n");
-    if(addElement(&al1,1)==0){
-        printf("Se relleno correctamente el array \n");
-        printArr(&al1);
-    }
-}else{printf("Hubo un error al iniciar el array 'al1'\n");}
-
+if(initArray(&al1)==0 && fillArray(&al1)==0){
+    printf("Se rellenaron los nuevos valores al array 'al1' \n");
+    printArr(&al1);
+}
 
 }
