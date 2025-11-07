@@ -127,23 +127,20 @@ arrayLength_t al1, al2;
 int fillArray (arrayLength_t *pArray){
     if (pArray == NULL) return -1;
     for(int i=0;i<10;i++){
-        addElement(pArray,i*10);
+        addElement(pArray,(i+1)*10);
     }
 return 0;
 }
 
 int fillArrayImpar (arrayLength_t *pArray){
     if (pArray == NULL) return -1;
-    int num;
     pArray->arrAdd=0;
-    pArray->arrSize=0;
     for (int i =0; i<10 ; i++){
         //escoger impares
         if(i%2!=0){
-            pArray->arrInt[i]=i+2;
+            pArray->arrInt[i]=i;
         }
         pArray->arrAdd+=pArray->arrInt[i];
-        pArray->arrSize++;
     }
     return 0;
 }
