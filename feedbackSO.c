@@ -125,10 +125,27 @@ arrayLength_t al1, al2;
 //realizo alguna funcion extra para los ejercicios del apartado 6
 
 int fillArray (arrayLength_t *pArray){
+    if (pArray == NULL) return -1;
     for(int i=0;i<10;i++){
         addElement(pArray,i*10);
     }
 return 0;
+}
+
+int fillArrayImpar (arrayLength_t *pArray){
+    if (pArray == NULL) return -1;
+    int num;
+    pArray->arrAdd=0;
+    pArray->arrSize=0;
+    for (int i =0; i<10 ; i++){
+        //escoger impares
+        if(i%2!=0){
+            pArray->arrInt[i]=i+2;
+        }
+        pArray->arrAdd+=pArray->arrInt[i];
+        pArray->arrSize++;
+    }
+    return 0;
 }
 
 int main (){
@@ -176,9 +193,17 @@ printArr(&miArray);
 
 printf("\n Apartado 6 \n");
 //llenamos el array 
+//apartados 6.1  6.2  y 6.3
 if(initArray(&al1)==0 && fillArray(&al1)==0){
     printf("Se rellenaron los nuevos valores al array 'al1' \n");
     printArr(&al1);
+}
+
+//apartados 6.4
+if(fillArrayImpar(&al1)==0){
+    printf("Se relleno el array de posiciones impares \n");
+    printArr(&al1);
+
 }
 
 }
