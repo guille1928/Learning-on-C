@@ -171,6 +171,9 @@ int fillArrayPar (arrayLength_t *pArray, arrayLength_t *pArrayFill ){
     return 0;
 }
 
+//
+
+
 int main (){
 arrayLength_t miArray;
 
@@ -230,7 +233,7 @@ if(fillArrayImpar(&al1)==0){
 }
 //apartado 6.6, 6.7 y 6.8
 if(initArray(&al2)==0&&fillArrayPar(&al1,&al2)==0 ){
-    printf("Se rellenó el array 'al2' con la numeracion par de 'al1' \n");
+    printf("Se relleno el array 'al2' con la numeracion par de 'al1' y las ultimas posiciones 0 al 4 \n");
     
 }
 printArr(&al2);
