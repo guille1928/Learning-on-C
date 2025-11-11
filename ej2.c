@@ -1,5 +1,8 @@
-#include<stdio.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>   
+#include <sys/types.h>
+#include <sys/wait.h>
 //Ejercicio 2
 //Apartado 1-------------------------------------------------
 //Apartado1.1
@@ -113,10 +116,36 @@ void modifyArray (potenciaP_t array[], int base , int exp){
 
 //Apartado 3.6
 //funcion para crear hijos con funcion fork
+void crearHijosCalculo (potenciaP_t arr[], int size){
+    pid_t pid;
+    for (int i =0; i< size;i++){
+        pid=fork();
+        if(pid<0){
+            printf("Error al crear el proceso hijo");
+            return;
+        }else if (pid == 0){
+            //proceso hijo
+            int resultado = getPotencia(arr[i].base,arr[i].exp);
+            exit(resultado %255);
+        }
+    }
+//proceso padre
+int status;
+for(int i =0; i<size;i++){
+    pid_t hijoTerminado = wait(&status);
+    if (WIFEXITED(status)) {
+            int valor = WEXITSTATUS(status);
+            arr[i].potencia = valor;
+        }
+}
+}
 
 int main (){
+//creo objetos y arrays necesarios
 potenciaP_t potencia;
 potenciaP_t arrayTest[SIZE];
+pid_t pids[SIZE];
+
 if(setBaseExp(&potencia,4,4)==0){
     printf("Creado correntamente \n");
     setPotenciaEst(&potencia);
@@ -149,4 +178,7 @@ printf("\n");
 //Apartado 3.5
 printArrayEst(arr1);
 
+printf("\nApartado 3.6 y 3.7 :\n");
+crearHijosCalculo(arr1,10);
+printArrayEst(arr1);
 }
