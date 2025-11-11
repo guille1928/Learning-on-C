@@ -33,7 +33,6 @@ int getPotencia (int baseF, int expF){
         potencia *= baseF;
         i++;
     }
-
     return potencia;
 }
 
@@ -54,6 +53,7 @@ int leer (potenciaP_t *p){
 //Apartado 2-------------------------------------------------
 //Apartado 2.1
 //creo funcion para iniciar el array que no devuelve nada
+
 void initArrayEst (potenciaP_t  arr[]){
 for (int i=0; i<SIZE;i++){
     arr[i].base =i+1;
@@ -87,26 +87,66 @@ printf("\n");
 
 }
 
-//creo array para printar el array 
+//Apartado 2.2
+//creo array para printar el array según el apartado
 void printArrayEst (potenciaP_t arr[]){
-
-    
+for (int i=0;i<SIZE;i++){
+printf("arr[%d] : base: %d exp: %d potencia %d \n" , i,arr[i].base,arr[i].exp,arr[i].potencia);
 }
+}
+//Apartado 2.3
+//función para crear hebras
+void* calcuPotHeb (void* arg){
+    potenciaP_t *p= (potenciaP_t*) arg;
+    setPotenciaEst(p);
+return arg;
+}
+
+
+//Apartado 3 
+//Funciones extras
+void modifyArray (potenciaP_t array[], int base , int exp){
+    for (int i=0;i<SIZE; i++){
+      setBaseExp(&array[i],i+1,2);
+    }
+}
+
+//Apartado 3.6
+//funcion para crear hijos con funcion fork
 
 int main (){
 potenciaP_t potencia;
-potenciaP_t array[SIZE];
+potenciaP_t arrayTest[SIZE];
 if(setBaseExp(&potencia,4,4)==0){
     printf("Creado correntamente \n");
     setPotenciaEst(&potencia);
-    printf("Todo bien \n");
     leer(&potencia);
+    printf("\n");
 }
 
-printf("\n Apartado 2 : \n");
+printf("\n Apartado 2 : \n \n");
 printf("Inicio y compruebo como esta el array \n");
-initArrayEst(array);
-ComprobarArray(array);
+initArrayEst(arrayTest);
+ComprobarArray(arrayTest);
+printf("\n");
+printf("Apartado 2.2 \n \n");
+printArrayEst(arrayTest);
 
+//Apartado 3-----------------------------------------------
+//Apartado 3.1
+printf("\n \n Apartado 3 : \n \n");
+potenciaP_t arr1[SIZE];
+//Apartado 3.2
+initArrayEst(arr1);
+printf("\nApartado 3.3 : \n \n");
+//Apartado 3.3
+printArrayEst(arr1);
+
+printf("\n Apartado 3.4  y 3.5 :\n");
+//Apartado 3.4
+modifyArray(arr1,1,2);
+printf("\n");
+//Apartado 3.5
+printArrayEst(arr1);
 
 }
