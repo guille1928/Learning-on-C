@@ -61,14 +61,6 @@ void setPotenciaEst (potenciaP_t *PPotencia){
 PPotencia->potencia=(getPotencia(PPotencia->base,PPotencia->exp));
 }
 
-
-int leer (potenciaP_t *p){
-    printf("La base es %d : y el exp es %d : \n",p->base,p->exp);
-    printf("La potencia es %d :  ", p->potencia);
-    return 0;
-
-}
-
 //Apartado 2-------------------------------------------------
 //Apartado 2.1
 //creo funcion para iniciar el array que no devuelve nada
@@ -113,6 +105,7 @@ for (int i=0;i<SIZE;i++){
 printf("arr[%d] : base: %d exp: %d potencia %d \n" , i,arr[i].base,arr[i].exp,arr[i].potencia);
 }
 }
+
 //Apartado 2.3
 //función para crear hebras
 void* calcuPotHeb (void* arg){
@@ -171,19 +164,15 @@ printArrayEst(array);
 
 }
 
-
-
 int main (){
 //creo objetos y arrays necesarios
 potenciaP_t potencia;
 potenciaP_t arrayTest[SIZE];
 pid_t pids[SIZE];
 
-
 if(setBaseExp(&potencia,4,4)==0){
     printf("Creado correntamente \n");
     setPotenciaEst(&potencia);
-    leer(&potencia);
     printf("\n");
 }
 
