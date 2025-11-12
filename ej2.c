@@ -3,6 +3,20 @@
 #include <unistd.h>   
 #include <sys/types.h>
 #include <sys/wait.h>
+
+/*Para levantar Ubuntu en WSL windows:
+Terminal :
+wsl
+Si no esta levantado 
+wsl --list --verbose
+wsl -d Ubuntu
+
+Ir al directorio :
+gcc ej2.c -o ej2  compilo y cargo el archivo 
+./ej2
+
+*/
+
 //Ejercicio 2
 //Apartado 1-------------------------------------------------
 //Apartado1.1
