@@ -3,6 +3,8 @@
 #include <unistd.h>   
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <pthread.h>
+
 
 /*Para levantar Ubuntu en WSL windows:
 Terminal :
@@ -154,11 +156,29 @@ for(int i =0; i<size;i++){
 }
 }
 
+//Apartado 3.13
+void sizeHebras (potenciaP_t array[]){
+pthread_t hilos[SIZE];
+for(int i=0;i<SIZE;i++){
+    //Cuando la hebra empiece a ejecutarse, ejecuta esta función CalcuPotHeb
+pthread_create (&hilos[i],NULL,calcuPotHeb,&array[i]);
+}
+for(int i=0;i<SIZE;i++){
+pthread_join(hilos[i],NULL);
+}
+printf("\n Resultado de 'arr2' después de las hebras :\n");
+printArrayEst(array);
+
+}
+
+
+
 int main (){
 //creo objetos y arrays necesarios
 potenciaP_t potencia;
 potenciaP_t arrayTest[SIZE];
 pid_t pids[SIZE];
+
 
 if(setBaseExp(&potencia,4,4)==0){
     printf("Creado correntamente \n");
@@ -195,4 +215,16 @@ printArrayEst(arr1);
 printf("\nApartado 3.6 y 3.7 :\n");
 crearHijosCalculo(arr1,10);
 printArrayEst(arr1);
+printf("\nApartado 3.8 , 3.9 y 3.10  :\n");
+potenciaP_t arr2[SIZE];
+//Apartado 3.9
+initArrayEst(arr2);
+//Apartado 3.10
+printArrayEst(arr2);
+printf("\n");
+modifyArray(arr2,1,2);
+//Apartado 3.11 y 3.14
+printArrayEst(arr2);
+printf("\n");
+sizeHebras(arr2);
 }
