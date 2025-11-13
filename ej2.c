@@ -1,3 +1,4 @@
+//Autor Guillermo Fernandez Tardon NP174292
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>   
@@ -108,10 +109,11 @@ printf("arr[%d] : base: %d exp: %d potencia %d \n" , i,arr[i].base,arr[i].exp,ar
 
 //Apartado 2.3
 //función para crear hebras
-void* calcuPotHeb (void* arg){
-    potenciaP_t *p= (potenciaP_t*) arg;
-    setPotenciaEst(p);
+void* calcuPotHeb (*void arg){
+potenciaP_t *p= (potenciaP_t*) arg;
+setPotenciaEst(p);
 return arg;
+
 }
 
 
@@ -156,8 +158,9 @@ for(int i=0;i<SIZE;i++){
     //Cuando la hebra empiece a ejecutarse, ejecuta esta función CalcuPotHeb
 pthread_create (&hilos[i],NULL,calcuPotHeb,&array[i]);
 }
+    //esperamos a que una hebra termine antes de continuar el progama principal
 for(int i=0;i<SIZE;i++){
-pthread_join(hilos[i],NULL);
+    pthread_join(hilos[i],NULL);
 }
 printf("\n Resultado de 'arr2' después de las hebras :\n");
 printArrayEst(array);
@@ -193,7 +196,6 @@ initArrayEst(arr1);
 printf("\nApartado 3.3 : \n \n");
 //Apartado 3.3
 printArrayEst(arr1);
-
 printf("\n Apartado 3.4  y 3.5 :\n");
 //Apartado 3.4
 modifyArray(arr1,1,2);
@@ -208,11 +210,11 @@ printf("\nApartado 3.8 , 3.9 y 3.10  :\n");
 potenciaP_t arr2[SIZE];
 //Apartado 3.9
 initArrayEst(arr2);
-//Apartado 3.10
+//Apartado 3.11
 printArrayEst(arr2);
 printf("\n");
 modifyArray(arr2,1,2);
-//Apartado 3.11 y 3.14
+//Apartado 3.12 3.13 y 3.14
 printArrayEst(arr2);
 printf("\n");
 sizeHebras(arr2);
